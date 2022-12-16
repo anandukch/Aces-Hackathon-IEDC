@@ -28,6 +28,4 @@ router.get('/docter',getDocters);
 router.get('/docter/:id',getTime);
 
 
-
-
 module.exports = router;
