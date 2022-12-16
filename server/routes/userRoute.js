@@ -2,8 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const {
-  matchToken, auth
+   auth
 } = require('../middlewares/authMiddleware');
+
+const {
+  getUser
+}=require('../controllers/user/profile');
 
 
 const {
@@ -12,7 +16,8 @@ const {
 } = require('../controllers/user/auth');
 
 router.post('/login', auth, loginUser);
-router.route('/register', registerUser);
+router.post('/register',  registerUser);
+router.get('/profile',auth, getUser);
 
 
 module.exports = router;
