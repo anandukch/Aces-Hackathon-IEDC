@@ -1,32 +1,33 @@
 const asyncWrapper = require("../error/asyncWrapper")
-const CustomError=require('../error/custom');
-const jwt=require('jsonwebtoken');
+const CustomError = require('../error/custom');
+const jwt = require('jsonwebtoken');
 
 const {
     StatusCodes,
     getReasonPhrase
-}=require('http-status-codes');
+} = require('http-status-codes');
 
 
+const auth = async (req, res, next) => {
 
-const matchToken=asyncWrapper(async(req,res,next)=>{
-    let token=req.headers.authorization;
-    const method=req.method;
-    if(!token)throw new CustomError("token not present",StatusCodes.UNAUTHORIZED);
-    token=token.split(' ')[1];
-    try{
-        const isValid=await jwt.verify(token,process.env.JWT_SECRET);
-        const senderId=isValid.userId;
-        if(method==='POST'){
-            if(req.body.senderId!==senderId) throw new CustomError(getReasonPhrase(StatusCodes.FORBIDDEN),StatusCodes.FORBIDDEN);
+    try {
+        // check header
+        const authHeader = req.headers.authorization;
+        if (!authHeader || !authHeader.startsWith("Bearer")) return next(CustomError("token not found", StatusCodes.UNAUTHORIZED))
+
+        const token = authHeader.split(" ")[1];
+        if (!token) {
+            next({ status: 403, message: "auth token is missing" });
+            return;
         }
+        const payload = jwt.verify(token, process.env.JWT_SECRET);
+        // attach the user to the job routes
+        req.user = payload.payload;
+        // console.log(req.user);
+        next();
+    } catch (error) {
+        return next(CustomError("token not found", StatusCodes.UNAUTHORIZED))
     }
-    catch(err){
-        throw new CustomError(getReasonPhrase(StatusCodes.UNAUTHORIZED),StatusCodes.UNAUTHORIZED);
-    }
+};
 
-    return next();  
-})
-
- module.exports={matchToken};
- 
+module.exports = { auth };

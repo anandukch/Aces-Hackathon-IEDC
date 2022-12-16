@@ -6,6 +6,7 @@ const root_dir = __dirname.split('src')[0]
 dotenv.config({ path: path.join(root_dir, `.env`) });
 const cors = require("cors");
 const connectDB = require("./config/db");
+const { auth } = require("./middlewares/authMiddleware");
 
 // const connectDB = require("./utils/connectDB");
 // const auth = require("./middleware/auth");

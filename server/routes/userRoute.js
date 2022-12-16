@@ -1,21 +1,18 @@
-const express=require('express');
-const router=express.Router();
+const express = require('express');
+const router = express.Router();
 
 const {
-    matchToken
-} =require('../middlewares/authMiddleware');
+  matchToken, auth
+} = require('../middlewares/authMiddleware');
 
 
 const {
-    loginUser,
-    registerUser,
-}=require('../controllers/user/auth');
+  loginUser,
+  registerUser,
+} = require('../controllers/user/auth');
+
+router.post('/login', auth, loginUser);
+router.route('/register', registerUser);
 
 
-
-
-router.route('/login').post(matchToken,loginUser);
-router.route('/register').post(registerUser);
-
-
-module.exports=router;
+module.exports = router;
