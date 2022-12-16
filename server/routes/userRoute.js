@@ -12,7 +12,7 @@ const {
 } = require('../controllers/user/auth');
 
 router.post('/login', auth, loginUser);
-router.route('/register', registerUser);
+router.post('/register', registerUser);
 
 
 module.exports = router;
