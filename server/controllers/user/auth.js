@@ -5,6 +5,7 @@ const {
     StatusCodes,
     getReasonPhrase
 } = require('http-status-codes');
+const asyncWrapper = require('../../error/asyncWrapper');
 const UserModel = require('../../models/user');
 
 
