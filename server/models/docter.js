@@ -26,6 +26,6 @@ const docterSchema = new mongoose.Schema({
 // docterSchema.pre("save",()=>{
 
 // })
-const DocterModel = mongoose.model("User", docterSchema);
+const DocterModel = mongoose.model("Docter", docterSchema);
 module.exports = DocterModel;
 
