@@ -20,10 +20,7 @@ export default function SignUp() {
     event.preventDefault();
     console.log("this is signup")
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
     navigate('/home')
 
   };
