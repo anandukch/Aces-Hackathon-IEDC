@@ -48,7 +48,6 @@ app.get('/api/v1/', auth, (req, res) => {
 // app.use("/admin",)
 // app.use("/user")
 // app.use(require("./middleware/errorHandler"));
-console.log(process.env.NODE_ENV);
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`http://127.0.0.1:${port}`));
