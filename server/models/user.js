@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
   email: {
     type: String,
     trim: true,
@@ -10,28 +9,23 @@ const userSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  mobileNumber: {
-    type: String,
-    required: true,
-    unique: true,
-    minlength: 10,
-    maxlength: 13,
+  firstName: {
+    type: String
   },
-  gstNumber: { type: String, minlength: 15 },
-  address: { type: String, required: true },
-  panNumber: {
-    type: String,
-    minlength: 10,
-    required: true,
+  lastName: {
+    type: String
   },
-  legalName: { type: String, required: true },
-  isApproveterms: {
-    type: Boolean,
-    default: true,
+  password: {
+    type: String
   },
-  smsConsent: { type: Boolean },
+  phno: {
+    type: String
+  }
 });
 
+// userSchema.pre("save",()=>{
+
+// })
 userSchema.methods.createJWT = async function () {
   const user = this;
   const token = jwt.sign({ id: user._id.toString(), userType: "normal" }, process.env.JWT_SECRET);
