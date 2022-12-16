@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root{
+  /* CSS HSL */
+--russian-violet: hsla(292, 50%, 17%, 1);
+--white: hsla(0, 0%, 100%, 1);
+--skobeloff: hsla(183, 65%, 24%, 1);
+--caribbean-green: hsla(167, 100%, 38%, 1);
+--orange-red-crayola: hsla(358, 100%, 68%, 1);
+}
