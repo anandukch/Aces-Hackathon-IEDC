@@ -7,6 +7,7 @@ dotenv.config({ path: path.join(root_dir, `.env`) });
 const cors = require("cors");
 const connectDB = require("./config/db");
 const { auth } = require("./middlewares/authMiddleware");
+const { default: api } = require("../client/src/apis");
 
 // const connectDB = require("./utils/connectDB");
 // const auth = require("./middleware/auth");
@@ -37,7 +38,7 @@ const corsOptions = {
   allowedHeaders: "*",
   "Access-Control-Request-Headers": "*",
 };
-
+const userRouter = require("./routes/userRoute")
 app.use(cors(corsOptions));
 
 app.use(express.json());
@@ -46,6 +47,7 @@ app.get('/api/v1/', auth, (req, res) => {
   return res.status(200).json({ message: "authenticated" })
 })
 
+api.use("/user", userRouter)
 // app.use("/admin",)
 // app.use("/user")
 // app.use(require("./middleware/errorHandler"));
