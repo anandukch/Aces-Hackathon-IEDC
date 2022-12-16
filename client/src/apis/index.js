@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_KEY,
+  baseURL: 'http://localhost:5000/',
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json; charset=utf-8",
@@ -22,4 +22,10 @@ api.interceptors.request.use(
   }
 );
 
-export default api;
+export const login = (data) => {
+  api.post("/user/login",data)
+}
+
+export const register = (data) => {
+  api.post("/user/register",data)
+}

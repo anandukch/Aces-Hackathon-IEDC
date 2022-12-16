@@ -11,19 +11,17 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import { register } from "../../apis";
 
 const theme = createTheme();
 
 export default function SignUp() {
   const navigate = useNavigate()
+  
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("this is signup")
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    register({firstName: data.get("firstName"), lastName: data.get("lastName"), email: data.get("email"), password: data.get("password"), phno: data.get("phno")})
     navigate('/home')
 
   };
