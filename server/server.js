@@ -45,9 +45,9 @@ app.get('/api/v1/', auth, (req, res) => {
   return res.status(200).json({ message: "authenticated" })
 })
 
-app.use("/admin",)
-app.use("/user")
-app.use(require("./middleware/errorHandler"));
+// app.use("/admin",)
+// app.use("/user")
+// app.use(require("./middleware/errorHandler"));
 console.log(process.env.NODE_ENV);
 const port = process.env.PORT || 5000;
 
