@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const appoinmentSchema = new mongoose.Schema({
+const appointmentSchema = new mongoose.Schema({
     timeSlot:{
         type:String
     },
@@ -12,9 +12,9 @@ const appoinmentSchema = new mongoose.Schema({
     }
 });
 
-// appoinmentSchema.pre("save",()=>{
+// appointmentSchema.pre("save",()=>{
 
 // })
-const AppoinmentModel = mongoose.model("User", appoinmentSchema);
-module.exports = AppoinmentModel;
+const appointmentModel = mongoose.model("appointment", appointmentSchema);
+module.exports = appointmentModel;
 

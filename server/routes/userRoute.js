@@ -20,12 +20,19 @@ const {
   getDocters,
   getTime
 } = require('../controllers/user/docter');
+const { getAppointment } = require('../controllers/admin/appointment');
 
 router.post('/login', auth, loginUser);
 router.post('/register',  registerUser);
 router.get('/profile',auth, getUser);
 router.get('/docter',getDocters);
 router.get('/docter/:id',getTime);
+
+//common
+
+router.get('/getappointment',getAppointment);
+
+///getappointment
 
 
 module.exports = router;
