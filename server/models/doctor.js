@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
-const docterSchema = new mongoose.Schema({
+const doctorSchema = new mongoose.Schema({
   email: {
     type: String,
     trim: true,
@@ -9,23 +9,20 @@ const docterSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  firstName: {
-    type: String
-  },
-  lastName: {
+  name: {
     type: String
   },
   phno: {
     type: String
   },
-  timeAvailible:{
-    type:Date
+  timeAvailable: {
+    type: Date
   }
 });
 
-// docterSchema.pre("save",()=>{
+// doctorSchema.pre("save",()=>{
 
 // })
-const DocterModel = mongoose.model("Docter", docterSchema);
-module.exports = DocterModel;
+const DoctorModel = mongoose.model("Doctor", doctorSchema);
+module.exports = DoctorModel;
 
