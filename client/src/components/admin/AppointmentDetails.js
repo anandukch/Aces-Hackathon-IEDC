@@ -1,10 +1,12 @@
 import { Button, Grid, TextField } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import AppointmentTable from "./AppointmentTable";
+import NavBar_Admin from './NavBar_admin'
 
 export default function AppointmentDetails() {
   return (
     <>
+      <NavBar_Admin/>
       <Grid
         container
         spacing={0}
@@ -14,6 +16,7 @@ export default function AppointmentDetails() {
         justifyContent="center"
         alignItems="center"
         gap={3}
+        marginBottom={2}
         // style={{ minHeight: "100vh" }}
       >
         <Grid>

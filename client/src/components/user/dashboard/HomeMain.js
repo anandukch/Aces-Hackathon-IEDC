@@ -11,7 +11,7 @@ import NavBar from '../Navbar'
 import DoctorVisit from '../../../images/DoctorVisit.jpg'
 import patientVisit from '../../../images/patientVisit.jpg'
 
-export default function MediaCard() {
+export default function HomeMain() {
   return (<>
   <NavBar />
   <Container>

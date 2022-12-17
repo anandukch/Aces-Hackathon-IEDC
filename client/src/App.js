@@ -1,5 +1,4 @@
 import "./App.css";
-import NavBar from "./components/user/Navbar";
 import SignIn from "./components/user/Signin";
 import SignUp from "./components/user/Signup";
 import HomeMain from "./components/user/dashboard/HomeMain";
