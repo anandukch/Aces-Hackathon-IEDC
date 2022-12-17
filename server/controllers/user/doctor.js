@@ -4,15 +4,10 @@ const CustomError = require("../../error/custom");
 const asyncWrapper = require("../../error/asyncWrapper");
 
 const getDoctors = asyncWrapper(async (req, res) => { //auth with normal token
-    const doctorData = await DoctorModel.find();
-    if (!doctorData) throw new CustomError("data not present", StatusCodes.BAD_REQUEST);
-    res.status(StatusCodes.OK).json({
-        firstName: doctorData.firstName,
-        lastName: doctorData.lastName,
-        timeAvailable: doctorData.timeAvailable,
-        email: doctorData.email,
-        phoneNumber: doctorData.phno
-    })
+    const doctorData = await DoctorModel.find({});
+    console.log(doctorData);
+    // if (!doctorData) throw new CustomError("data not present", StatusCodes.BAD_REQUEST);
+    res.status(StatusCodes.OK).json(doctorData)
 
 })
 
