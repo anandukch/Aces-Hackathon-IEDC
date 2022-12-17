@@ -31,11 +31,11 @@ router.get('doctor', getTime);
 
 //common
 
-router.get('/getappointment', getAppointment);
+router.get('/getappointment',auth, getAppointment);
 
 //create appointment
 
-router.post('/createappointment',createAppointment);
+router.post('/createappointment',auth,createAppointment);
 
 ///getappointment
 
