@@ -1,16 +1,20 @@
-import { Button, Grid, MenuItem, Select, InputLabel } from "@mui/material";
+import { Button, Grid, MenuItem, Select, InputLabel, TextField } from "@mui/material";
 import DocScheduleSlots from "./DocScheduleSlots";
 import NavBar_Admin from "../NavBar_admin";
 import { useEffect, useState } from "react";
 import { getDoctor } from "../../../apis";
+import { Stack } from "@mui/system";
 
 export default function DocScheduleMain() {
-  const [doctor, setDoctor] = useState();
+  const [doctors, setDoctors] = useState([]);
+  const [doctor, setDoctor] = useState("");
+
   const handleChange = () => {};
   useEffect(() => {
     getDoctor()
       .then((res) => {
         console.log(res);
+        setDoctors(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -29,25 +33,41 @@ export default function DocScheduleMain() {
         justifyContent="center"
         alignItems="center"
         gap={3}
-        marginBottom={2}
+        marginBottom={3}
         // style={{ minHeight: "100vh" }}
       >
-        <Grid item xs={12}>
-          <InputLabel id="demo-simple-select-label">Chose a doctor</InputLabel>
+        <Grid>
+          <InputLabel id="demo-simple-select-label">Choose a doctor</InputLabel>
           <Select
+            fullWidth
             labelId="doctor-select"
             id="doctor-select"
-            value={doctor}
             label="Doctor"
             onChange={handleChange}
           >
-            <MenuItem value={"Dr. Sreerag"}>Dr. Sreerag</MenuItem>
-            <MenuItem value={"Dr. Advait"}>Dr. Advait</MenuItem>
-            <MenuItem value={"Dr. Anandu"}>Dr. Anandu</MenuItem>
-            <MenuItem value={"Dr. Alvin"}>Dr. Alvin</MenuItem>
+            {doctors.map((doctor) => {
+              return (
+                <MenuItem key={doctor._id} value={doctor.name}>
+                  {doctor.name}
+                </MenuItem>
+              );
+            })}
           </Select>
         </Grid>
-
+        <Grid>
+          <Stack component="form" noValidate spacing={3}>
+            <TextField
+              id="date"
+              label="Date:"
+              type="date"
+              defaultValue={new Date().toJSON().slice(0, 10)}
+              sx={{ width: 220 }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Stack>
+        </Grid>
         <Grid>
           <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
             Print the Appointment Details

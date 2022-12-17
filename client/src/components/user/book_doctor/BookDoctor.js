@@ -10,8 +10,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { InputLabel, MenuItem, Select } from "@mui/material";
+import { getDoctor } from "../../../apis";
 
-import AvailableSlots from './AvailableSlots'
+import { useState, useEffect } from "react";
+
+import AvailableSlots from "./AvailableSlots";
 
 const theme = createTheme();
 
@@ -25,16 +28,23 @@ export default function BookDoctor() {
     });
   };
 
-  const [doctor, setDoctor] = React.useState("Dr. Sreerag");
+  const [doctors, setDoctors] = useState([]);
+  const [doctor, setDoctor] = useState("");
 
-  const handleChange = (event) => {
-    setDoctor(event.target.value);
-  };
-
+  const handleChange = () => {};
+  useEffect(() => {
+    getDoctor()
+      .then((res) => {
+        console.log(res);
+        setDoctors(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
@@ -55,8 +65,8 @@ export default function BookDoctor() {
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+            <Grid container spacing={2} alignItems="center" gap={3}>
+              <Grid xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -67,7 +77,7 @@ export default function BookDoctor() {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
@@ -77,34 +87,37 @@ export default function BookDoctor() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid>
                 <InputLabel id="demo-simple-select-label">
-                Chose a doctor
+                  Choose a doctor
                 </InputLabel>
                 <Select
+                  fullWidth
                   labelId="doctor-select"
                   id="doctor-select"
-                  value={doctor}
                   label="Doctor"
                   onChange={handleChange}
                 >
-                  <MenuItem value={"Dr. Sreerag"}>Dr. Sreerag</MenuItem>
-                  <MenuItem value={"Dr. Advait"}>Dr. Advait</MenuItem>
-                  <MenuItem value={"Dr. Anandu"}>Dr. Anandu</MenuItem>
-                  <MenuItem value={"Dr. Alvin"}>Dr. Alvin</MenuItem>
+                  {doctors.map((doctor) => {
+                    return (
+                      <MenuItem key={doctor._id} value={doctor.name}>
+                        {doctor.name}
+                      </MenuItem>
+                    );
+                  })}
                 </Select>
-              </Grid> 
-              <Grid item xs={12}>
-                  <TextField
-                    id="date"
-                    label="Date of appointment"
-                    type="date"
-                    defaultValue="2022-12-17"
-                    sx={{ width: 220 }}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
+              </Grid>
+              <Grid xs={12}>
+                <TextField
+                  id="date"
+                  label="Date of appointment"
+                  type="date"
+                  defaultValue="2022-12-17"
+                  sx={{ width: 220 }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
               </Grid>
             </Grid>
             <Button
@@ -117,7 +130,7 @@ export default function BookDoctor() {
             </Button>
           </Box>
         </Box>
-        <AvailableSlots/>
+        <AvailableSlots />
       </Container>
     </ThemeProvider>
   );

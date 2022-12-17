@@ -1,68 +1,63 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { Container } from '@mui/material';
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-function createData(name, calories, fat, protein) {
-  return { name, calories, fat, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 19, "Dr. Sreerag", "9-10"),
-  createData('Ice cream sandwich', 27, "Dr. Sreerag", "9-10"),
-  createData('Eclair', 22, "Dr. Sreerag", "9-10"),
-  createData('Cupcake', 35, "Dr. Sreerag", "9-10"),
-  createData('Gingerbread', 36, "Dr. Sreerag", "9-10"),
-];
+import * as React from "react";
+import Box from "@mui/material/Box";
+import FormLabel from "@mui/material/FormLabel";
+import FormControl from "@mui/material/FormControl";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { Button } from "@mui/material";
+import { Container } from "@mui/system";
+import { alignProperty } from "@mui/material/styles/cssUtils";
 
 export default function DocScheduleSlots() {
+  const sched = {
+    "9 AM - 10 AM": false,
+    "10 AM - 11 AM": false,
+    "11 AM - 12 AM": false,
+    "1 PM - 2 PM": false,
+    "2 PM - 3 PM": false,
+    "3 PM - 4 PM": false,
+    "4 PM - 5 PM": false,
+  };
+
+  const [state, setState] = React.useState(sched);
+
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  // const { gilad, jason, antoine } = state;
+
   return (
-    <TableContainer component={Container}>
-      <Table sx={{ maxWidth: 900 }} aria-label="customized table" align='center'>
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell align="right">Age</StyledTableCell>
-            <StyledTableCell align="right">Doctor</StyledTableCell>
-            <StyledTableCell align="right">Time slot</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">{row.name}</StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Container sx={{ display: "flex", justifyContent: "center" }}>
+      <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+        <FormLabel component="legend">
+          Chose from the avaialable slots
+        </FormLabel>
+        <FormGroup>
+          {Object.keys(state).map((time, index) => {
+            return (
+              <FormControlLabel
+                key={index}
+                control={
+                  <Checkbox
+                    checked={state[time]}
+                    onChange={handleChange}
+                    name={time}
+                  />
+                }
+                label={time}
+              />
+            );
+          })}
+        </FormGroup>
+        <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          Save
+        </Button>
+      </FormControl>
+    </Container>
   );
 }

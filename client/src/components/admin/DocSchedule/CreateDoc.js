@@ -1,18 +1,20 @@
 import { Avatar, Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { addDoctor } from "../../../apis";
 import NavBar_Admin from "../NavBar_admin";
+import {useNavigate} from 'react-router-dom'
 
 export default function CreateDoc() {
+  const navigate=useNavigate();
 
   const handleSubmit = (event) => {
-    const navigate=useNavigate();
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     addDoctor({
-      name: data.get("fullname"),
+      name: data.get("fullName"),
       phno: data.get("phno")
     }).then((res) => {
       console.log(res)
+      navigate('/admin/docschedule')
     }).catch((err) => {
       console.log(err)
     })
