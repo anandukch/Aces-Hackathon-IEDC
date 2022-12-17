@@ -8,6 +8,7 @@ import HomeAdmin from "./components/admin/dashboard_admin/HomeAdmin";
 import CreateDoc from "./components/admin/DocSchedule/CreateDoc";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import DocScheduleMain from "./components/admin/DocSchedule/DocScheduleMain";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/admin/app" element={<AppointmentDetails/>}/>
         <Route path="/admin/home" element={<HomeAdmin/>}/>
         <Route path="/admin/createdoc" element={<CreateDoc/>}/>
-
+        <Route path="/admin/docschedule" element={<DocScheduleMain/>}/>
       </Routes>
     </Router>
   );

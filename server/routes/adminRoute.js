@@ -20,7 +20,7 @@ router.post('/create-time-slot', auth, addTimeSlot);
 
 //add route for adding and remove doctor
 
-router.post('/add-doctor', auth, addDoctorDetails);
+router.post('/add-doctor', addDoctorDetails);
 router.patch('/edit-doctor', auth, editDoctorDetails);
 
 // add route for creating time slot

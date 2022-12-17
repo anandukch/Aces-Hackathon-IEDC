@@ -78,7 +78,6 @@ export default function BookDoctor() {
                 />
               </Grid>
               <Grid item xs={12}>
-                {/* <FormControl fullWidth> */}
                 <InputLabel id="demo-simple-select-label">
                 Chose a doctor
                 </InputLabel>
@@ -94,7 +93,6 @@ export default function BookDoctor() {
                   <MenuItem value={"Dr. Anandu"}>Dr. Anandu</MenuItem>
                   <MenuItem value={"Dr. Alvin"}>Dr. Alvin</MenuItem>
                 </Select>
-                {/* </FormControl> */}
               </Grid> 
               <Grid item xs={12}>
                   <TextField
