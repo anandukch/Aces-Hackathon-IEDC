@@ -47,6 +47,7 @@ app.get('/api/v1/', auth, (req, res) => {
 })
 
 app.use("/user", userRouter)
+app.use("/admin", require("./routes/adminRoute"))
 // app.use("/admin",)
 // app.use("/user")
 // app.use(require("./middleware/errorHandler"));
