@@ -11,6 +11,7 @@ const jwt = require("jsonwebtoken");
 
 const loginUser = asyncWrapper(async (req, res) => {
     const user = await UserModel.findById(req.user.id)
+    const token = jwt.sign({ id: user._id.toString(), userType: "normal" }, process.env.JWT_SECRET);
     res.status(StatusCodes.OK).json({
         "userId": user._id,
         "token": token,

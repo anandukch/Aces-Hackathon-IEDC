@@ -11,6 +11,7 @@ const jwt = require("jsonwebtoken");
 
 const loginAdmin = asyncWrapper(async (req, res) => {
     const admin = await AdminModel.findById(req.admin.id)
+    const token = jwt.sign({ id: admin._id.toString(), userType: "admin" }, process.env.JWT_SECRET);
     res.status(StatusCodes.OK).json({
         "adminId": admin._id,
         "token": token,
