@@ -13,7 +13,7 @@ const auth = async (req, res, next) => {
     try {
         // check header
         const authHeader = req.headers.authorization;
-        if (!authHeader || !authHeader.startsWith("Bearer")) return next(CustomError("token not found", StatusCodes.UNAUTHORIZED))
+        if (!authHeader || !authHeader.startsWith("Bearer")) return next(new CustomError("token not found", StatusCodes.UNAUTHORIZED))
 
         const token = authHeader.split(" ")[1];
         if (!token) {
@@ -26,7 +26,7 @@ const auth = async (req, res, next) => {
         // console.log(req.user);
         next();
     } catch (error) {
-        return next(CustomError("token not found", StatusCodes.UNAUTHORIZED))
+        return next(new CustomError("token not found", StatusCodes.UNAUTHORIZED))
     }
 };
 
