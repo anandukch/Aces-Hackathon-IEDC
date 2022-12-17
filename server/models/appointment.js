@@ -4,7 +4,7 @@ const appointmentSchema = new mongoose.Schema({
     timeSlot:{
         type:String
     },
-    docterId: {
+    doctorId: {
         type: mongoose.Types.ObjectId
     },
     patientId: {
@@ -12,6 +12,6 @@ const appointmentSchema = new mongoose.Schema({
     }
 });
 
-const appointmentModel = mongoose.model("appointment", appointmentSchema);
-module.exports = appointmentModel;
+const AppointmentModel = mongoose.model("appointment", appointmentSchema);
+module.exports = AppointmentModel;
 

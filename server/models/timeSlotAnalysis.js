@@ -12,10 +12,16 @@ const timeSlotAnalysisSchema = new mongoose.Schema({
     type: String
   },
   numberOfPatients: {
-    type: Number
+    type: Number,
+    default: 0
   },
   maxNumberOfPatients: {
-    type: Number
+    type: Number,
+    default: 10
+  },
+  status: {
+    type: String,
+    default: "available"
   }
 });
 
