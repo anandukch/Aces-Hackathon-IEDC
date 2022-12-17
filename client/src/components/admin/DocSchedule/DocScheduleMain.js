@@ -47,6 +47,7 @@ export default function DocScheduleMain() {
             <MenuItem value={"Dr. Alvin"}>Dr. Alvin</MenuItem>
           </Select>
         </Grid>
+
         <Grid>
           <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
             Print the Appointment Details
