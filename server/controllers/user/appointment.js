@@ -23,11 +23,7 @@ const getAppointmentTimeAvailability = asyncWrapper(async (req, res) => {
         ({ doctorId, appointmentDate: date })
     if (!timeSlotAnalysis) throw new CustomError("data not present", StatusCodes.BAD_REQUEST);
     if (timeSlotAnalysis.numberOfPatients >= timeSlotAnalysis.maxNumberOfPatients) throw new CustomError("time slot not available", StatusCodes.BAD_REQUEST)
-    res.status(StatusCodes.OK).json({
-        timeSlot: timeSlotAnalysis.timeSlot,
-        doctorId: timeSlotAnalysis.doctorId,
-        patientId: timeSlotAnalysis.patientId,
-    })
+    res.status(StatusCodes.OK).json(timeSlotAnalysis)
 })
 
 module.exports = {
