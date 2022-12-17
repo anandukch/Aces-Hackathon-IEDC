@@ -22,6 +22,7 @@ const {
 } = require('../controllers/user/doctor');
 const { getAppointment } = require('../controllers/admin/appointment');
 const { createAppointment, getAppointmentTimeAvailability } = require('../controllers/user/appointment');
+const { getRoomSlot } = require('../controllers/user/roomSlot');
 
 router.post('/login', auth, loginUser);
 router.post('/register', registerUser);
@@ -40,6 +41,11 @@ router.post('/create-appointment', auth, createAppointment);
 ///getappointment 
 
 router.post('/available', getAppointmentTimeAvailability);
+
+
+//get room slot by name
+
+router.get('/patient-details',getRoomSlot);
 
 
 module.exports = router;
