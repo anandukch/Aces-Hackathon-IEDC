@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
 const timeSlotAnalysisSchema = new mongoose.Schema({
+  appointmentDate: {
+    type: Date
+  },
   doctorId: {
     type: mongoose.Types.ObjectId
   },
@@ -9,13 +12,19 @@ const timeSlotAnalysisSchema = new mongoose.Schema({
     type: String
   },
   numberOfPatients: {
-    type: Number
+    type: Number,
+    default: 0
+  },
+  maxNumberOfPatients: {
+    type: Number,
+    default: 10
+  },
+  status: {
+    type: String,
+    default: "available"
   }
 });
 
-// userSchema.pre("save",()=>{
-
-// })
 const TimeSlotAnalysisModel = mongoose.model("timeSlotAnalysis", timeSlotAnalysisSchema);
 module.exports = TimeSlotAnalysisModel;
 

@@ -7,9 +7,9 @@ const getAppointment = asyncWrapper(async (req, res) => { //auth with normal tok
     const appointmentData = await appointmentModel.find();
     if (!appointmentData) throw new CustomError("data not present", StatusCodes.BAD_REQUEST);
     res.status(StatusCodes.OK).json({
-        "timeSlot": appointmentData.timeSlot,
-        "doctorId": appointmentData.doctorId,
-        "patientId": appointmentData.patientId,
+        timeSlot: appointmentData.timeSlot,
+        doctorId: appointmentData.doctorId,
+        patientId: appointmentData.patientId,
     })
 
 })
