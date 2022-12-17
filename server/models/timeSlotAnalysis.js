@@ -13,6 +13,9 @@ const timeSlotAnalysisSchema = new mongoose.Schema({
   },
   numberOfPatients: {
     type: Number
+  },
+  maxNumberOfPatients: {
+    type: Number
   }
 });
 
