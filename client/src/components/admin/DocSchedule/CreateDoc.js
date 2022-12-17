@@ -1,4 +1,5 @@
 import { Avatar, Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import { addDoctor } from "../../../apis";
 import NavBar_Admin from "../NavBar_admin";
 
 export default function CreateDoc(){
@@ -6,10 +7,16 @@ export default function CreateDoc(){
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    addDoctor({
+      name:data.get("fullname"),
+      phno:data.get("phno")
+    }).then((res)=>{
+      console.log(res)
+    }).catch((err)=>{
+      console.log(err)
+    })
+
+
   };
 
   return <>
