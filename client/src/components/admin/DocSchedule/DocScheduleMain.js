@@ -69,9 +69,6 @@ export default function DocScheduleMain() {
           </Stack>
         </Grid>
         <Grid>
-          <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Print the Appointment Details
-          </Button>
         </Grid>
       </Grid>
       <DocScheduleSlots />
