@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const {
-   auth
+  auth
 } = require('../middlewares/authMiddleware');
 
 const {
   getUser
-}=require('../controllers/user/profile');
+} = require('../controllers/user/profile');
 
 
 const {
@@ -17,20 +17,20 @@ const {
 
 
 const {
-  getDocters,
+  getDoctors,
   getTime
-} = require('../controllers/user/docter');
+} = require('../controllers/user/doctor');
 const { getAppointment } = require('../controllers/admin/appointment');
 
 router.post('/login', auth, loginUser);
-router.post('/register',  registerUser);
-router.get('/profile',auth, getUser);
-router.get('/docter',getDocters);
-router.get('/docter/:id',getTime);
+router.post('/register', registerUser);
+router.get('/profile', auth, getUser);
+router.get('doctor', getDoctors);
+router.get('doctor', getTime);
 
 //common
 
-router.get('/getappointment',getAppointment);
+router.get('/getappointment', getAppointment);
 
 ///getappointment
 
