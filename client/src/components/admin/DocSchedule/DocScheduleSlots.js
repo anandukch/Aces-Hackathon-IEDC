@@ -7,8 +7,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
 import { Container } from "@mui/system";
+import { createAppointment } from "../../../apis";
 
-export default function DocScheduleSlots() {
+export default function DocScheduleSlots({ doctorId, date }) {
   const sched = {
     "9 AM - 10 AM": false,
     "10 AM - 11 AM": false,
@@ -58,11 +59,18 @@ export default function DocScheduleSlots() {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
           onClick={(e) => {
-            e.preventDefault()
-            console.log(state)
-            console.log(Object.keys(state))
-            let tempstate = Object.keys(state).filter((time)=>state[time]===true)
-            console.log(tempstate)
+            e.preventDefault();
+            let timeSlots = Object.keys(state).filter(
+              (time) => state[time] === true
+            );
+            createAppointment({
+              doctorId,
+              timeSlots,
+              date 
+            }).then((res) => {
+              console.log(res);
+              setState(sched);
+            });
           }}
         >
           Save

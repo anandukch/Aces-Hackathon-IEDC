@@ -7,9 +7,17 @@ import { Stack } from "@mui/system";
 
 export default function DocScheduleMain() {
   const [doctors, setDoctors] = useState([]);
-  const [doctor, setDoctor] = useState("");
 
-  const handleChange = () => {};
+  const [doctorId, setDoctorId] = useState("");
+  const [date, setDate] = useState("");
+
+  const handleChange = (e) => {
+    setDoctorId(e.target.value)
+  };
+  const handleChangeDate = (e) => {
+    setDate(e.target.value)
+  } 
+  
   useEffect(() => {
     getDoctor()
       .then((res) => {
@@ -47,7 +55,7 @@ export default function DocScheduleMain() {
           >
             {doctors.map((doctor) => {
               return (
-                <MenuItem key={doctor._id} value={doctor.name}>
+                <MenuItem key={doctor._id} value={doctor._id}>
                   {doctor.name}
                 </MenuItem>
               );
@@ -65,13 +73,14 @@ export default function DocScheduleMain() {
               InputLabelProps={{
                 shrink: true,
               }}
+              onChange={handleChangeDate}
             />
           </Stack>
         </Grid>
         <Grid>
         </Grid>
       </Grid>
-      <DocScheduleSlots />
+      <DocScheduleSlots doctorId={doctorId} date={date}/>
     </>
   );
 }
