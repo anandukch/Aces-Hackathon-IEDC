@@ -14,7 +14,7 @@ const { addTimeSlot } = require('../controllers/admin/timeslot');
 ///getappointment
 router.post('/login', auth, loginAdmin);
 router.post('/register', registerAdmin);
-router.post('/createtimeslot',addTimeSlot);
+router.post('/createtimeslot',auth ,addTimeSlot);
 
 module.exports=router;
 
