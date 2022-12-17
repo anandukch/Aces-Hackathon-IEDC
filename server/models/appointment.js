@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const appointmentSchema = new mongoose.Schema({
-    timeSlot:{
-        type:String
+    timeSlot: {
+        type: String
     },
     doctorId: {
         type: mongoose.Types.ObjectId
     },
-    patientId: {
-        type: mongoose.Types.ObjectId
+    patientName: {
+        type: String
     }
 });
 
