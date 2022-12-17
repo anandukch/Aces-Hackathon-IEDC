@@ -16,12 +16,11 @@ const getDoctors = asyncWrapper(async (req, res) => { //auth with normal token
 
 })
 
-
+ 
 const getTime = asyncWrapper(async (req, res) => {
     const { id } = req.params;
     if (!id) throw new CustomError("no data present", StatusCodes.BAD_REQUEST);
     const doctorData = await DoctorModel.findById({ _id: id });
-
     if (!doctorData) throw new CustomError("no data present", StatusCodes.BAD_REQUEST);
     res.status(StatusCodes.OK).json({
         "timeAvailable": doctorData.timeAvailable,
