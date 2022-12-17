@@ -9,12 +9,22 @@ const {
 
 const { getAppointment } = require('../controllers/admin/appointment');
 const { addTimeSlot } = require('../controllers/admin/timeslot');
+const { addDoctorDetails, editDoctorDetails } = require('../controllers/admin/doctor');
 
 
 ///getappointment
 router.post('/login', auth, loginAdmin);
 router.post('/register', registerAdmin);
-router.post('/createtimeslot',addTimeSlot);
+router.post('/createtimeslot',auth ,addTimeSlot);
+
+
+//add route for adding and remove doctor
+
+router.post('/adddoctor',addDoctorDetails);
+router.patch('/editdoctor',editDoctorDetails);
+
+
+
 
 module.exports=router;
 
