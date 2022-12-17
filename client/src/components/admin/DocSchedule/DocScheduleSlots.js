@@ -7,7 +7,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
 import { Container } from "@mui/system";
-import { alignProperty } from "@mui/material/styles/cssUtils";
 
 export default function DocScheduleSlots() {
   const sched = {
@@ -54,7 +53,18 @@ export default function DocScheduleSlots() {
             );
           })}
         </FormGroup>
-        <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+          onClick={(e) => {
+            e.preventDefault()
+            console.log(state)
+            console.log(Object.keys(state))
+            let tempstate = Object.keys(state).filter((time)=>state[time]===true)
+            console.log(tempstate)
+          }}
+        >
           Save
         </Button>
       </FormControl>
