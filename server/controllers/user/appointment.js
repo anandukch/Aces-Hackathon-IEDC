@@ -6,9 +6,22 @@ const AppointmentModel = require("../../models/appointment");
 
 const createAppointment = asyncWrapper(async (req, res) => { //auth with normal token
     const appointmentData = await AppointmentModel.create(req.body);
-    const timeSlotAnalysis = await TimeSlotAnalysisModel.findOne({ doctorId: appointmentData.doctorId, timeSlot: appointmentData.timeSlot })
+    const timeSlotAnalysis = await TimeSlotAnalysisModel.findOne({ _id: req.params.id })
     if (!timeSlotAnalysis) throw new CustomError("data not present", StatusCodes.BAD_REQUEST);
-    timeSlotAnalysis.numberOfPatients = timeSlotAnalysis.numberOfPatients + 1;
+    let timeSlots = timeSlotAnalysis.timeSlots
+    timeSlots = timeSlots.map(timeSlot => {
+        if (timeSlot) {
+            if (timeSlot.time == req.body.time) {
+                timeSlot.numberOfPatients = timeSlot.numberOfPatients + 1;
+                if (timeSlot.numberOfPatients >= 10) {
+                    timeSlot.status = "not available"
+                }
+            }
+        }
+    })
+    timeSlotAnalysis.timeSlots = timeSlots
+
+
     await timeSlotAnalysis.save();
     res.status(StatusCodes.OK).json({
         timeSlot: appointmentData.timeSlot,
@@ -19,10 +32,19 @@ const createAppointment = asyncWrapper(async (req, res) => { //auth with normal 
 
 const getAppointmentTimeAvailability = asyncWrapper(async (req, res) => {
     const { doctorId, date } = req.body;
-    const timeSlotAnalysis = await TimeSlotAnalysisModel.findOne
+    let timeSlotAnalysis
+    timeSlotAnalysis = await TimeSlotAnalysisModel.findOne
         ({ doctorId, appointmentDate: date })
-    if (!timeSlotAnalysis) throw new CustomError("data not present", StatusCodes.BAD_REQUEST);
-    if (timeSlotAnalysis.numberOfPatients >= timeSlotAnalysis.maxNumberOfPatients) throw new CustomError("time slot not available", StatusCodes.BAD_REQUEST)
+    if (!timeSlotAnalysis) {
+        timeSlotAnalysis = await TimeSlotAnalysisModel.create({
+            doctorId, appointmentDate: date
+        })
+    }
+    // timeSlotAnalysis.timeSlots.map(timeSlot => {
+
+    // })
+    // if (!timeSlotAnalysis) throw new CustomError("data not present", StatusCodes.BAD_REQUEST);
+    // if (timeSlotAnalysis.numberOfPatients >= timeSlotAnalysis.maxNumberOfPatients) throw new CustomError("time slot not available", StatusCodes.BAD_REQUEST)
     res.status(StatusCodes.OK).json(timeSlotAnalysis)
 })
 

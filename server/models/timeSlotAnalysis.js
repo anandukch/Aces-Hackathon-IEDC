@@ -6,10 +6,20 @@ const timeSlotAnalysisSchema = new mongoose.Schema({
     type: Date
   },
   doctorId: {
-    type: String
+    type: mongoose.Types.ObjectId
   },
   timeSlots: {
-    type: Array,
+    type: [{
+      time: String,
+      numberOfPatients: {
+        type: Number,
+        default: 0
+      },
+      status: {
+        type: String,
+        default: "available"
+      }
+    }],
     default: []
   },
 
