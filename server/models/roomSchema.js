@@ -23,7 +23,7 @@ const roomSchema = new mongoose.Schema({
 // roomSchema.pre("save",()=>{
 
 // })
-const RoomSlotModel = mongoose.model("User", roomSchema);
+const RoomSlotModel = mongoose.model("Room", roomSchema);
 module.exports = RoomSlotModel;
 
 
