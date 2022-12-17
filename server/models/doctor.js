@@ -9,17 +9,14 @@ const doctorSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  firstName: {
-    type: String
-  },
-  lastName: {
+  name: {
     type: String
   },
   phno: {
     type: String
   },
-  timeAvailable:{
-    type:Date
+  timeAvailable: {
+    type: Date
   }
 });
 
