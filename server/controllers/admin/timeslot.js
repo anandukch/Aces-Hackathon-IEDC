@@ -8,7 +8,7 @@ const TimeSlotAnalysisModel = require('../../models/timeSlotAnalysis');
 
 const addTimeSlot = asyncWrapper(async (req, res) => {
     const timeSlotData = await TimeSlotAnalysisModel.create(req.body);
-    const {appointmentDate,doctorId,timeSlot,numberOfPatients}=timeSlotData;
+    const { appointmentDate, doctorId, timeSlot, numberOfPatients } = timeSlotData;
     res.status(StatusCodes.OK).json({
         appointmentDate,
         doctorId,
@@ -19,6 +19,6 @@ const addTimeSlot = asyncWrapper(async (req, res) => {
 })
 
 
-module.exports={
+module.exports = {
     addTimeSlot
 }
