@@ -8,14 +8,6 @@ const TimeSlotAnalysisModel = require('../../models/timeSlotAnalysis');
 
 const addTimeSlot = asyncWrapper(async (req, res) => {
     const { doctorId, timeSlots, date } = req.body
-    // const timeSlotsData = Object.keys(timeSlots).map(time => {
-    //     return {
-    //         time: time,
-    //         numberOfPatients: 0,
-    //         status: "available"
-
-    //     }
-    // })
     const timeSlotData = await TimeSlotAnalysisModel.create({
         appointmentDate: date,
         doctorId,
