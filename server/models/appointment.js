@@ -12,9 +12,6 @@ const appointmentSchema = new mongoose.Schema({
     }
 });
 
-// appointmentSchema.pre("save",()=>{
-
-// })
 const appointmentModel = mongoose.model("appointment", appointmentSchema);
 module.exports = appointmentModel;
 
