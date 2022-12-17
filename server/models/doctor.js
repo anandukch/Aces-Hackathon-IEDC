@@ -16,6 +16,9 @@ const doctorSchema = new mongoose.Schema({
   },
   timeAvailable: {
     type: Date
+  },
+  specialization:{
+    type:String
   }
 });
 
