@@ -6,8 +6,7 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     trim: true,
     lowercase: true,
-    unique: true,
-    required: true,
+    unique: true
   },
   name: {
     type: String
