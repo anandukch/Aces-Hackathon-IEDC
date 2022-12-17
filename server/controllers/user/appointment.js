@@ -6,7 +6,7 @@ const AppointmentModel = require("../../models/appointment");
 
 const createAppointment = asyncWrapper(async (req, res) => { //auth with normal token
     const appointmentData = await AppointmentModel.create(req.body);
-    const timeSlotAnalysis = await TimeSlotAnalysisModel.findOne({ _id: req.params.id })
+    const timeSlotAnalysis = await TimeSlotAnalysisModel.findOne({ doctorId: req.body.doctorId, appointmentDate: req.body.date })
     if (!timeSlotAnalysis) throw new CustomError("data not present", StatusCodes.BAD_REQUEST);
     let timeSlots = timeSlotAnalysis.timeSlots
     timeSlots = timeSlots.map(timeSlot => {

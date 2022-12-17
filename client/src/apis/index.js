@@ -30,5 +30,7 @@ export const addDoctor = (data) => api.post("/admin/add-doctor", data)
 export const getDoctor = () => api.get("/common/doctors")
 export const createAppointment = (data) => api.post("/admin/create-time-slot", data)
 export const getAvailableSlots = (data) => api.post("/user/available", data)
+export const bookAppointment = (data) => api.post("/user/create-appointment", data)
+
 
 
