@@ -15,7 +15,8 @@ const { createRoomSlot } = require('../controllers/admin/roomSlot');
 ///getappointment
 router.post('/login', auth, loginAdmin);
 router.post('/register', registerAdmin);
-router.post('/create-time-slot', auth, addTimeSlot);
+
+router.post('/create-time-slot', addTimeSlot);
 
 
 //add route for adding and remove doctor
