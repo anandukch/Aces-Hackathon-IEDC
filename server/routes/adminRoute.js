@@ -8,11 +8,13 @@ const {
 
 
 const { getAppointment } = require('../controllers/admin/appointment');
+const { addTimeSlot } = require('../controllers/admin/timeslot');
 
 
 ///getappointment
 router.post('/login', auth, loginAdmin);
 router.post('/register', registerAdmin);
+router.post('/createtimeslot',addTimeSlot);
 
 module.exports=router;
 
