@@ -26,8 +26,8 @@ const { createAppointment } = require('../controllers/user/appointment');
 router.post('/login', auth, loginUser);
 router.post('/register', registerUser);
 router.get('/profile', auth, getUser);
-router.get('doctor', getDoctors);
-router.get('doctor', getTime);
+router.get('/doctor', getDoctors);
+router.get('/doctor', getTime);
 
 //common
 
