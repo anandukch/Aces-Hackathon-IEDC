@@ -16,14 +16,23 @@ import { register } from "../../apis";
 const theme = createTheme();
 
 export default function SignUp() {
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    register({firstName: data.get("firstName"), lastName: data.get("lastName"), email: data.get("email"), password: data.get("password"), phno: data.get("phno")})
-    navigate('/home')
-
+    register({
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      email: data.get("email"),
+      password: data.get("password"),
+      phno: data.get("phno"),
+    }).then((e)=>{
+      console.log(e)
+    }).catch((err)=>{
+      console.log(err)
+    })
+    navigate("/home");
   };
 
   return (

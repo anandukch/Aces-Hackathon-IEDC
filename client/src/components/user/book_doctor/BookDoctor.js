@@ -1,18 +1,18 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { InputLabel, MenuItem, Select, Stack } from "@mui/material";
 
 const theme = createTheme();
 
@@ -21,9 +21,15 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      email: data.get("email"),
+      password: data.get("password"),
     });
+  };
+
+  const [doctor, setDoctor] = React.useState("Dr. Sreerag");
+
+  const handleChange = (event) => {
+    setDoctor(event.target.value);
   };
 
   return (
@@ -33,18 +39,23 @@ export default function SignUp() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <AssignmentIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Book an appointment
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -61,38 +72,44 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
+                  id="age"
+                  label="Age"
+                  name="age"
                   autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
+                {/* <FormControl fullWidth> */}
+                <InputLabel id="demo-simple-select-label">
+                Chose a doctor
+                </InputLabel>
+                <Select
+                  labelId="doctor-select"
+                  id="doctor-select"
+                  value={doctor}
+                  label="Doctor"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"Dr. Sreerag"}>Dr. Sreerag</MenuItem>
+                  <MenuItem value={"Dr. Advait"}>Dr. Advait</MenuItem>
+                  <MenuItem value={"Dr. Anandu"}>Dr. Anandu</MenuItem>
+                  <MenuItem value={"Dr. Alvin"}>Dr. Alvin</MenuItem>
+                </Select>
+                {/* </FormControl> */}
+              </Grid> 
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
+                <Stack component="form" noValidate spacing={3}>
+                  <TextField
+                    id="date"
+                    label="Date of appointment"
+                    type="date"
+                    defaultValue="2022-12-17"
+                    sx={{ width: 220 }}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Stack>
               </Grid>
             </Grid>
             <Button
@@ -101,18 +118,10 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Check for available slots
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );

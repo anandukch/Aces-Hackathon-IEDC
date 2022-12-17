@@ -8,24 +8,21 @@ const api = axios.create({
   },
 });
 
-api.interceptors.request.use(
-  (config) => {
-    // const authToken = JSON.parse(localStorage.getItem("auth")!)?.token;
-    // const newConfig = config;
-    // if (authToken) {
-    //   newConfig.headers!.Authorization = `Bearer ${authToken}`;
-    // }
-    // return newConfig;
-  },
-  (error) => {
-    return console.log(error);
-  }
-);
+// api.interceptors.request.use(
+//   (config) => {
+//     // const authToken = JSON.parse(localStorage.getItem("auth")!)?.token;
+//     // const newConfig = config;
+//     // if (authToken) {
+//     //   newConfig.headers!.Authorization = `Bearer ${authToken}`;
+//     // }
+//     // return newConfig;
+//   },
+//   (error) => {
+//     return console.log(error);
+//   }
+// );
 
-export const login = (data) => {
-  api.post("/user/login",data)
-}
+export const login = (data) => api.post("/user/login",data)
 
-export const register = (data) => {
-  api.post("/user/register",data)
-}
+
+export const register = (data) => api.post("/user/register",data)
