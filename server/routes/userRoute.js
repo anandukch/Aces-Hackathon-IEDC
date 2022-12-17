@@ -37,7 +37,9 @@ router.get('/getappointment',auth, getAppointment);
 
 router.post('/createappointment',auth,createAppointment);
 
-///getappointment
+///getappointment 
+
+router.post('/available',getAppointmentTimeAvailability);
 
 
 module.exports = router;
