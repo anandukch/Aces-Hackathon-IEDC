@@ -10,8 +10,14 @@ import { Container } from "@mui/system";
 import NavBar from '../Navbar'
 import DoctorVisit from '../../../images/DoctorVisit.jpg'
 import patientVisit from '../../../images/patientVisit.jpg'
+import { useNavigate } from "react-router-dom";
 
 export default function HomeMain() {
+
+  const navigate = useNavigate()
+
+
+
   return (<>
   <NavBar />
   <Container>
@@ -22,7 +28,7 @@ export default function HomeMain() {
             component="img"
             height="140"
             image={DoctorVisit}
-            alt="green iguana"
+            alt="Book Appointment with Doctor."
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -30,7 +36,9 @@ export default function HomeMain() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Book Now</Button>
+            <Button size="small" onClick={(()=>{
+              navigate("/book")
+            })}>Book Now</Button>
           </CardActions>
         </Card>
       </Grid>
@@ -40,7 +48,7 @@ export default function HomeMain() {
             component="img"
             height="140"
             image={patientVisit}
-            alt="green iguana"
+            alt="Book Visit time with a patient."
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">

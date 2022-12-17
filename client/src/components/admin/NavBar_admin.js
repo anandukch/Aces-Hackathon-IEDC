@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Navbar', 'of', 'Admin'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function NavBar_Admin() {

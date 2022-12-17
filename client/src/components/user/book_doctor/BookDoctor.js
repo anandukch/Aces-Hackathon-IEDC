@@ -9,7 +9,9 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { InputLabel, MenuItem, Select, Stack } from "@mui/material";
+import { InputLabel, MenuItem, Select } from "@mui/material";
+
+import AvailableSlots from './AvailableSlots'
 
 const theme = createTheme();
 
@@ -95,7 +97,6 @@ export default function BookDoctor() {
                 {/* </FormControl> */}
               </Grid> 
               <Grid item xs={12}>
-                <Stack component="form" noValidate spacing={3}>
                   <TextField
                     id="date"
                     label="Date of appointment"
@@ -106,7 +107,6 @@ export default function BookDoctor() {
                       shrink: true,
                     }}
                   />
-                </Stack>
               </Grid>
             </Grid>
             <Button
@@ -119,6 +119,7 @@ export default function BookDoctor() {
             </Button>
           </Box>
         </Box>
+        <AvailableSlots/>
       </Container>
     </ThemeProvider>
   );

@@ -40,7 +40,7 @@ const rows = [
   createData('Gingerbread', 36, "Dr. Sreerag", "9-10"),
 ];
 
-export default function AppointmentTable() {
+export default function DocScheduleSlots() {
   return (
     <TableContainer component={Container}>
       <Table sx={{ maxWidth: 900 }} aria-label="customized table" align='center'>

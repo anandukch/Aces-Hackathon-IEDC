@@ -1,9 +1,9 @@
 import { Button, Grid, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
-import AppointmentTable from "./AppointmentTable";
+import DocScheduleSlots from "./DocScheduleSlots";
 import NavBar_Admin from './NavBar_admin'
 
-export default function AppointmentDetails() {
+export default function DocScheduleMain() {
   return (
     <>
       <NavBar_Admin/>
