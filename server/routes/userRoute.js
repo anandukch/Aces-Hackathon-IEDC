@@ -36,7 +36,7 @@ router.get('/get-appointment', auth, getAppointment);
 
 //create appointment
 
-router.post('/create-appointment', auth, createAppointment);
+router.post('/create-appointment', createAppointment);
 
 ///getappointment 
 

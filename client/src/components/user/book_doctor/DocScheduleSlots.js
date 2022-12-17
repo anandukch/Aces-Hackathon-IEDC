@@ -2,7 +2,7 @@ import * as React from "react";
 import FormControl from "@mui/material/FormControl";
 import { Button, InputLabel, MenuItem, Select } from "@mui/material";
 import { Container } from "@mui/system";
-// import { bookAppointment } from "../../../apis";
+import { bookAppointment } from "../../../apis";
 
 export default function DocScheduleSlotsUser({ doctorId, date }) {
   const sched = [
@@ -43,7 +43,7 @@ export default function DocScheduleSlotsUser({ doctorId, date }) {
             <em>None</em>
           </MenuItem>
 
-          {state.map((time, index) => {
+          {sched.map((time, index) => {
             console.log(time)
             return (
                   <MenuItem key={index} value={time}>{time}</MenuItem>

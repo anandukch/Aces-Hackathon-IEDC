@@ -33,11 +33,11 @@ function createData(name, calories, fat, protein) {
 }
 
 const rows = [
-  createData('Frozen yoghurt', 19, "Dr. Sreerag", "9-10"),
-  createData('Ice cream sandwich', 27, "Dr. Sreerag", "9-10"),
-  createData('Eclair', 22, "Dr. Sreerag", "9-10"),
-  createData('Cupcake', 35, "Dr. Sreerag", "9-10"),
-  createData('Gingerbread', 36, "Dr. Sreerag", "9-10"),
+  createData('abc', 19, "Dr. Sreerag", "9-10"),
+  createData('def', 27, "Dr. Cj", "9-10"),
+  createData('ghi', 22, "Dr. Sreerag", "10-11"),
+  createData('jkl', 35, "Dr. CJ", "9-10"),
+  createData('mno', 36, "Dr. Sreerag", "9-10"),
 ];
 
 export default function AppointmentTable() {

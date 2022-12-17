@@ -36,8 +36,6 @@ const getAppointmentTimeAvailability = asyncWrapper(async (req, res) => {
     let timeSlotAnalysis
     timeSlotAnalysis = await TimeSlotAnalysisModel.findOne
         ({ doctorId, appointmentDate: date })
-<<<<<<< HEAD
-=======
     if (!timeSlotAnalysis) {
         timeSlotAnalysis = await TimeSlotAnalysisModel.create({
             doctorId, appointmentDate: date
@@ -46,7 +44,6 @@ const getAppointmentTimeAvailability = asyncWrapper(async (req, res) => {
     // timeSlotAnalysis.timeSlots.map(timeSlot => {
 
     // })
->>>>>>> 5deb1b7345fd3b911275ddb3fa58ed6aeeaa343b
     // if (!timeSlotAnalysis) throw new CustomError("data not present", StatusCodes.BAD_REQUEST);
     // if (timeSlotAnalysis.numberOfPatients >= timeSlotAnalysis.maxNumberOfPatients) throw new CustomError("time slot not available", StatusCodes.BAD_REQUEST)
     res.status(StatusCodes.OK).json(timeSlotAnalysis)
